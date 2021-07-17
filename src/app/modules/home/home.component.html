@@ -1,0 +1,84 @@
+<div id="home" class="pt-5 pb-6">
+  <div class="container pl-4 pr-4">
+    <div *ngFor="let question of questions" class="pt-5 pb-5">
+
+      <h2 class="title has-text-centered is-3">{{ question.heading }}</h2>
+
+      <div *ngFor="let info of question.info; let i = index;" class="mb-4">
+        <p class="has-text-weight-medium"> {{ i + 1 }}. {{ info.title }}</p>
+        <ul>
+          <li *ngFor="let list of info.list">{{ list }}</li>
+        </ul>
+        <div class="has-text-centered pt-5 pb-5">
+          <a
+            (click)="navigateTo(question.heading, info.button.link)"
+            class="button is-link is-outlined"
+            type="button">
+            {{ info.button.name }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-modal *ngIf="showModal" [(showModal)]="showModal">
+
+  <h2 class="title has-text-centered mt-4">Enter your details to login.</h2>
+
+  <form [formGroup]="loginForm" [ngStyle]="{'max-width': '300px'}" autocomplete="off" class="m-auto pt-2" novalidate>
+
+    <div class="field mb-5">
+      <p class="control">
+        <input
+          autocomplete="off"
+          class="input"
+          formControlName="mobile"
+          maxlength="10"
+          name="mobile"
+          placeholder="Enter your mobile number*"
+          type="text">
+      </p>
+      <p *ngIf="loginForm.get('mobile').touched && loginForm.get('mobile').invalid" class="has-text-danger">
+        <ng-container *ngIf="loginForm.get('mobile').hasError('required')">
+          Mobile number is required.
+        </ng-container>
+        <ng-container *ngIf="loginForm.get('mobile').hasError('pattern')">
+          There are invalid characters.
+        </ng-container>
+      </p>
+    </div>
+
+    <div class="field">
+      <p class="control">
+        <input
+          autocomplete="off"
+          class="input"
+          formControlName="password"
+          name="password"
+          placeholder="Enter your password*"
+          type="password">
+      </p>
+      <p
+        *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid
+        && loginForm.get('password').hasError('required')"
+        class="has-text-danger">
+        Password is required.
+      </p>
+    </div>
+
+    <div [ngStyle]="{'padding-top': '25px'}" class="pb-4">
+      <button
+        (click)="onClickLogin($event)"
+        [disabled]="loginForm.invalid"
+        class="button is-fullwidth has-text-weight-medium is-success">
+        Sign up
+      </button>
+    </div>
+
+    <p *ngIf="!!message" class="has-text-danger">{{ message }}</p>
+
+  </form>
+
+</app-modal>

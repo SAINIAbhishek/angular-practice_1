@@ -1,0 +1,106 @@
+<div id="user-form">
+  <form [formGroup]="profileForm" autocomplete="off" novalidate>
+
+    <div class="avatar-wrapper has-text-centered">
+      <figure class="image is-96x96 m-auto">
+        <img [src]="userAvatar" alt="Avatar" class="is-rounded">
+      </figure>
+      <p (click)="showModal = true;" class="has-text-link">Select avatar</p>
+    </div>
+
+    <div class="field mb-5">
+      <p class="control">
+        <input
+          (change)="onChange($event)"
+          class="input"
+          formControlName="name"
+          name="name"
+          placeholder="Enter your name*"
+          type="text">
+      </p>
+      <p
+        *ngIf="profileForm.get('name').touched && profileForm.get('name').invalid
+        && profileForm.get('name').hasError('required')"
+        class="has-text-danger">
+        Name is required.
+      </p>
+    </div>
+
+    <div class="field mb-5">
+      <p class="control">
+        <input
+          (change)="onChange($event)"
+          class="input"
+          formControlName="email"
+          name="email"
+          placeholder="Enter your email address*"
+          type="email">
+      </p>
+      <p
+        *ngIf="profileForm.get('email').touched && profileForm.get('email').invalid"
+        class="has-text-danger">
+        <ng-container *ngIf="profileForm.get('email').hasError('required')">
+          Email address is required.
+        </ng-container>
+        <ng-container *ngIf="profileForm.get('email').hasError('pattern')
+          && profileForm.get('email').value !== ''">
+          Email address is invalid.
+        </ng-container>
+      </p>
+    </div>
+
+    <div class="field mb-5">
+      <div [ngStyle]="{'width': '100%'}" class="select">
+        <select
+          (change)="onChange($event)"
+          [ngStyle]="{'width': '100%'}"
+          formControlName="country"
+          name="country">
+          <option [ngValue]="''">Select country</option>
+          <option *ngFor="let country of countries" [ngValue]="country.code">{{ country.name }}</option>
+        </select>
+      </div>
+      <p
+        *ngIf="profileForm.get('country').touched && profileForm.get('country').invalid
+        && profileForm.get('country').hasError('required')"
+        class="has-text-danger">
+        Country is required.
+      </p>
+    </div>
+
+    <div class="field">
+      <p class="control">
+        <input
+          (change)="onChange($event)"
+          class="input"
+          formControlName="dob"
+          name="dob"
+          type="date">
+      </p>
+      <p
+        *ngIf="profileForm.get('dob').touched && profileForm.get('dob').invalid
+        && profileForm.get('dob').hasError('required')"
+        class="has-text-danger">
+        Date of birth is required.
+      </p>
+    </div>
+
+  </form>
+</div>
+
+
+<app-modal [(showModal)]="showModal">
+
+  <h2 class="title is-3 has-text-centered mb-5">Select the avatar</h2>
+
+  <div class="is-flex is-justify-content-center is-flex-wrap-wrap">
+    <figure
+      (click)="selectAvatar(avatar)"
+      *ngFor="let avatar of avatars"
+      [ngStyle]="{'cursor': 'pointer'}"
+      class="m-4 image is-96x96">
+      <img [src]="avatar" alt="Avatar" class="is-rounded">
+    </figure>
+  </div>
+
+</app-modal>

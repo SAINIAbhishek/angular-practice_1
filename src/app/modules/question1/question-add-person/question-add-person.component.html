@@ -1,0 +1,35 @@
+<div class="pt-5 pb-6 page-height" id="question-add-person">
+  <div class="container pl-4 pr-4">
+    <div class="form-wrapper">
+
+      <h2 class="title has-text-centered">Register a new person.</h2>
+
+      <div class="form-content">
+
+        <app-user-form
+          (isFormValid)="isFormValid = $event"
+          [(user)]="user">
+        </app-user-form>
+
+        <div [ngStyle]="{'padding-top': '40px'}">
+          <button
+            (click)="onClickSignUp($event)"
+            [disabled]="!isFormValid"
+            class="button is-fullwidth has-text-weight-medium is-success">
+            Sign up
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<app-modal *ngIf="showModal" [(showModal)]="showModal">
+  <h2 class="title is-3 has-text-centered mt-5 mb-5">
+    Congratulations! You have been registered successfully.
+  </h2>
+</app-modal>
+<!-- /modal -->

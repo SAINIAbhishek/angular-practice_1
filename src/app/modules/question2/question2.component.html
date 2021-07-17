@@ -1,0 +1,74 @@
+<div class="pt-5 pb-6 page-height" id="question2">
+  <div class="container pl-4 pr-4">
+
+    <h2 class="title is-3 has-text-centered">Welcome back! Book your slot.</h2>
+
+    <div class="is-flex is-align-items-center mb-5 pt-5">
+      <p class="has-text-info-dark">{{ availableSlots }} slot available</p>
+      <div class="field ml-5">
+        <p class="control">
+          <input
+            #search
+            (change)="filter(search.value)"
+            [ngStyle]="{'width': '300px'}"
+            class="input"
+            name="search"
+            placeholder="Start typing SITE NAME here to search..."
+            type="text">
+        </p>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+          <th>SITE NAME</th>
+          <th>DATE</th>
+          <th>TIME FROM</th>
+          <th>TIME TO</th>
+          <th>SLOT AVAILABLE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of filteredResult; let i = index;">
+          <td>{{ data['site_name'] | titlecase }}</td>
+          <td>{{ data.date }}</td>
+          <td>{{ data['time_from'] }}</td>
+          <td>{{ data['time_to'] }}</td>
+          <td>
+            <button
+              (click)="bookSlot($event, i)"
+              [disabled]="!data['is_slot_available']"
+              [ngClass]="{'is-success': data['is_slot_available']}"
+              class="button is-small">
+              Book
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-5 mb-5">
+      <nav class="pagination" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+          <li>
+            <a class="pagination-link" aria-label="Goto page 1">1</a>
+            <a class="pagination-link" aria-label="Goto page 2">2</a>
+            <a class="pagination-link" aria-label="Goto page 3">3</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<app-modal *ngIf="showModal" [(showModal)]="showModal">
+  <h2 class="title is-3 has-text-centered mb-5">
+    Congratulations! You're vaccine slot has been booked successfully.
+  </h2>
+</app-modal>

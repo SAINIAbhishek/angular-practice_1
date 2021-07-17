@@ -1,0 +1,21 @@
+#user-form {
+
+  .select:not(.is-multiple) {
+    height: unset;
+  }
+
+  .avatar-wrapper {
+    margin-bottom: 30px;
+
+    .has-text-link {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+    }
+
+  }
+
+}

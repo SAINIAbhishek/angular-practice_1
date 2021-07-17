@@ -1,0 +1,26 @@
+#header {
+  border-bottom: 1px solid #F5F5F5;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+
+  .navbar-item {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .navbar-brand {
+
+    img {
+      max-height: unset;
+    }
+
+  }
+
+  .navbar-end .navbar-item {
+
+    &.active {
+      color: #485FC7;
+    }
+
+  }
+
+}

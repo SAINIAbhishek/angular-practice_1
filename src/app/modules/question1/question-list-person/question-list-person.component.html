@@ -1,0 +1,33 @@
+<div class="pt-5 pb-6 page-height" id="question-list-person">
+  <div class="container pl-4 pr-4">
+
+    <ng-container *ngIf="isLoading; else result">
+      <div class="is-flex is-justify-content-center">
+        <div class="loader"></div>
+      </div>
+    </ng-container>
+
+    <ng-template #result>
+      <div class="card-wrapper is-flex is-flex-wrap-wrap">
+        <ng-container *ngFor="let user of users">
+          <app-user-card [user]="user" (editUser)="onSelectUser($event)"></app-user-card>
+        </ng-container>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+
+<app-modal *ngIf="showModal" [(showModal)]="showModal">
+  <div [ngStyle]="{'max-width': '320px'}" class="m-auto p-5">
+    <app-user-form [(user)]="selectedUser" (isFormValid)="isFormValid = $event"></app-user-form>
+    <div [ngStyle]="{'padding-top': '40px'}">
+      <button
+        (click)="updateUser($event)"
+        [disabled]="!isFormValid"
+        class="button is-fullwidth has-text-weight-medium is-success">
+        Update
+      </button>
+    </div>
+  </div>
+</app-modal>

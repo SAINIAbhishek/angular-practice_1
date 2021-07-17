@@ -1,0 +1,21 @@
+<div [id]="'user-card'">
+  <div class="card has-text-centered pt-4">
+
+    <div class="card-image">
+      <figure class="image is-128x128 m-auto">
+        <img [src]="user.avatar" alt="Avatar">
+      </figure>
+    </div>
+
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p (click)="selectUser($event, user)" class="title is-4 text-link">{{ user.name }}</p>
+          <p class="subtitle is-6">{{ user.email }}</p>
+        </div>
+      </div>
+      <div class="content">Age: {{ user.dob | age }}</div>
+    </div>
+
+  </div>
+</div>

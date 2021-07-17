@@ -1,0 +1,29 @@
+#user-card {
+
+  .card {
+    margin: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+    transition: all 0.5s;
+    width: 205px;
+
+    .card-image img {
+      border-radius: 50%;
+    }
+
+    .text-link {
+      cursor: pointer;
+
+      &:hover {
+        color: #485FC7;
+      }
+
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+  }
+
+}

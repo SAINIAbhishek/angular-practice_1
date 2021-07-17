@@ -1,0 +1,23 @@
+<div *ngIf="showModal" [ngClass]="{'is-active': showModal}" class="modal">
+  <div (click)="closeModal($event)" class="modal-background"></div>
+  <div class="modal-content relative">
+
+    <!-- content -->
+    <div class="modal-content">
+      <div class="box">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    <!-- /content -->
+
+    <!-- close button -->
+    <button
+      (click)="closeModal($event)"
+      type="button"
+      class="modal-close is-large"
+      aria-label="close">
+    </button>
+    <!-- /close button -->
+
+  </div>
+</div>

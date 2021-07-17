@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  font-weight: 400;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+.page-height {
+  min-height: calc(100vh - 56px);
+}
+
+.has-text-danger {
+  font-size: 13px;
+  padding-top: 4px;
+}
+
+.control .input, .select select {
+  font-size: 14px;
+  box-shadow: 0 4px 10px 0 rgba(189,199,222,0.23);
+}
+
+.loader {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #485FC7;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.table-container {
+
+  .table {
+
+    thead tr th {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    tbody tr td, thead tr th {
+      padding: 12px 10px;
+    }
+
+    tbody tr td .button {
+      height: 24px;
+    }
+
+  }
+
+}
